@@ -64,7 +64,6 @@ class BaseMatplotLibViz(PandemicViz):
         self._gis = []
         self._gts = []
         self._stages = []
-        self._beta = []
 
         self._gis_legend = []
 
@@ -82,7 +81,6 @@ class BaseMatplotLibViz(PandemicViz):
         self._gis.append(obs.global_infection_summary)
         self._gts.append(obs.global_testing_summary)
         self._stages.append(obs.stage)
-        self._beta.append(obs.beta)
 
     def record_state(self, state: PandemicSimState) -> None:
         obs = PandemicObservation.create_empty()
@@ -137,14 +135,6 @@ class BaseMatplotLibViz(PandemicViz):
         ax.plot(stages)
         ax.set_ylim(-0.1, kwargs.get('num_stages', np.max(self._stages)) + 1)
         ax.set_title('Stage')
-        ax.set_xlabel('time (days)')
-        ax.yaxis.set_major_locator(MaxNLocator(integer=True))
-
-    def plot_beta(self, ax: Optional[Axes] = None, **kwargs: Any) -> None:
-        ax = ax or plt.gca()
-        beta = np.concatenate(self._beta).squeeze()
-        ax.plot(beta)
-        ax.set_title('Beta')
         ax.set_xlabel('time (days)')
         ax.yaxis.set_major_locator(MaxNLocator(integer=True))
 
