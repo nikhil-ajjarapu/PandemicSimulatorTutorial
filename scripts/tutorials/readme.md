@@ -108,6 +108,13 @@ PLEASE NOTE LINE NUMBER VALUES MAY CHANGE IF ADDITIONAL CHARACTERS OR LINES ARE 
 
 Steps
 <ol>
+<li><b>Switch to the Tutorial 2 branch via the following lines (run from the top level of the repository)</a></b>
+    
+```shell
+git fetch --all
+git checkout tut2
+```
+
 <li><b>Review <a href="#xobs">Explaining the Observation and Action</a></b>
 <li><b> Add Critical FLag </b><br>
 To modify the observation we can change the code at two levels. We can either change the structure of the simulator state or we can modify the final observation. For this tutorial we will modify the simulator state. The code for simulator state is in python/pandemic_simulator/environment/interfaces/sim_state.py
