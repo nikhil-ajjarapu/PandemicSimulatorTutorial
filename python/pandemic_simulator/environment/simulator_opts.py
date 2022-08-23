@@ -43,3 +43,6 @@ class PandemicSimOpts:
 
     infection_threshold: int = 10
     """A threshold used by """
+
+    #Create a Critical Threshold here with default value 10
+    

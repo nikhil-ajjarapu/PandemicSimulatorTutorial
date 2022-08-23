@@ -46,3 +46,5 @@ class PandemicSimState:
 
     sim_time: SimTime
     """Current simulation time"""
+
+# Add code for the new flag here

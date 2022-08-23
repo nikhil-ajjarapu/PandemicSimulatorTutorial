@@ -41,6 +41,8 @@ class PandemicSim:
     _new_time_slot_interval: SimTimeInterval
     _infection_update_interval: SimTimeInterval
     _infection_threshold: int
+    #add code for threshold
+    
     _numpy_rng: np.random.RandomState
 
     _type_to_locations: DefaultDict
@@ -57,7 +59,9 @@ class PandemicSim:
                  new_time_slot_interval: SimTimeInterval = SimTimeInterval(day=1),
                  infection_update_interval: SimTimeInterval = SimTimeInterval(day=1),
                  person_routine_assignment: Optional[PersonRoutineAssignment] = None,
-                 infection_threshold: int = 0):
+                 infection_threshold: int = 0,
+                 #add code for threshold                 
+                 ):
         """
         :param locations: A sequence of Location instances.
         :param persons: A sequence of Person instances.
@@ -86,6 +90,7 @@ class PandemicSim:
         self._new_time_slot_interval = new_time_slot_interval
         self._infection_update_interval = infection_update_interval
         self._infection_threshold = infection_threshold
+        #add code for threhsold
 
         self._type_to_locations = defaultdict(list)
         for loc in locations:
@@ -112,7 +117,8 @@ class PandemicSim:
             global_location_summary=self._registry.global_location_summary,
             sim_time=SimTime(),
             regulation_stage=0,
-            infection_above_threshold=False
+            infection_above_threshold=False,
+            #add code for flag
         )
 
     @classmethod
@@ -158,7 +164,9 @@ class PandemicSim:
                            pandemic_testing=pandemic_testing,
                            contact_tracer=contact_tracer,
                            infection_threshold=sim_opts.infection_threshold,
-                           person_routine_assignment=sim_config.person_routine_assignment)
+                           person_routine_assignment=sim_config.person_routine_assignment,
+                           #add code for threshold
+                           )
 
     @property
     def registry(self) -> Registry:
@@ -314,6 +322,8 @@ class PandemicSim:
         self._state.infection_above_threshold = (self._state.global_testing_state.summary[InfectionSummary.INFECTED]
                                                  >= self._infection_threshold)
 
+        #Add Code for flag
+
         self._state.global_location_summary = self._registry.global_location_summary
 
         if self._contact_tracer and self._new_time_slot_interval.trigger_at_interval(self._state.sim_time):
@@ -403,4 +413,5 @@ class PandemicSim:
             sim_time=SimTime(),
             regulation_stage=0,
             infection_above_threshold=False,
+            #add code for threshold
         )

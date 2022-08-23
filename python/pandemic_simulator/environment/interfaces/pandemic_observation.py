@@ -22,6 +22,7 @@ class PandemicObservation:
     stage: np.ndarray
     infection_above_threshold: np.ndarray
     time_day: np.ndarray
+    #add code for flag
     unlocked_non_essential_business_locations: Optional[np.ndarray] = None
 
     @classmethod
@@ -40,6 +41,7 @@ class PandemicObservation:
                                    global_testing_summary=np.zeros((history_size, 1, len(InfectionSummary))),
                                    stage=np.zeros((history_size, 1, 1)),
                                    infection_above_threshold=np.zeros((history_size, 1, 1)),
+                                   #add code for flag
                                    time_day=np.zeros((history_size, 1, 1)),
                                    unlocked_non_essential_business_locations=np.zeros((history_size, 1,
                                                                                        num_non_essential_business))
@@ -73,6 +75,8 @@ class PandemicObservation:
 
         self.infection_above_threshold[hist_index, 0] = int(sim_state.infection_above_threshold)
 
+        #add code for flag
+        
         self.time_day[hist_index, 0] = int(sim_state.sim_time.day)
 
     @property
