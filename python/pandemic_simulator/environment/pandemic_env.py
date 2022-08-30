@@ -146,7 +146,9 @@ class PandemicGymEnv(gym.Env):
             # store only the last self._history_size state values
             if i >= (self._sim_steps_per_regulation - self._obs_history_size):
                 obs.update_obs_with_sim_state(self._pandemic_sim.state, hist_index,
-                                              self._non_essential_business_loc_ids, self._last_observation.global_testing_summary)
+                                              self._non_essential_business_loc_ids, 
+                                              # self._last_observation.global_testing_summary
+                                              )
                 hist_index += 1
 
         prev_obs = self._last_observation
