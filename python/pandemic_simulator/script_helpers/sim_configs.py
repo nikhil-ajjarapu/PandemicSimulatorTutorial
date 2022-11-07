@@ -1,8 +1,7 @@
 # Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 
-from python.pandemic_simulator.environment.location.place_of_worship import PlaceOfWorship
 from .person_routines import DefaultPersonRoutineAssignment
-from ..environment import Home, GroceryStore, Office, School, Hospital, RetailStore, HairSalon, Restaurant, Bar, \
+from ..environment import Home, GroceryStore, Office, School, Hospital, RetailStore, HairSalon, Restaurant, Bar, PlaceOfWorship, \
     PandemicSimConfig, LocationConfig
 
 __all__ = ['town_config', 'small_town_config', 'test_config',
@@ -116,6 +115,6 @@ town_with_religion_config = PandemicSimConfig(
         LocationConfig(HairSalon, num=40, num_assignees=3, state_opts=dict(visitor_capacity=5)),
         LocationConfig(Restaurant, num=20, num_assignees=6, state_opts=dict(visitor_capacity=30)),
         LocationConfig(Bar, num=20, num_assignees=5, state_opts=dict(visitor_capacity=30)),
-        LocationConfig(PlaceOfWorship, num=15, num_assignees=150, state_opts=dict(visitor_capacity=30)),
+        LocationConfig(PlaceOfWorship, num=20, num_assignees=150, state_opts=dict(visitor_capacity=30)),
     ],
     person_routine_assignment=DefaultPersonRoutineAssignment())
