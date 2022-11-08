@@ -166,6 +166,7 @@ class BasePerson(Person):
         return NOOP
 
     def receive_regulation(self, regulation: PandemicRegulation) -> None:
+        self._modify_compliance(regulation)
         self._state.quarantine = regulation.quarantine
         self._state.quarantine_if_contact_positive = regulation.quarantine_if_contact_positive
         self._state.quarantine_if_household_quarantined = regulation.quarantine_if_household_quarantined
@@ -179,6 +180,22 @@ class BasePerson(Person):
         self._state.infection_spread_multiplier = (
                 1 - (1 - self._state.infection_spread_multiplier) * self._regulation_compliance_prob)
 
+    def _modify_compliance(self, regulation: PandemicRegulation):
+        stage = regulation.stage
+        comp = self._regulation_compliance_prob
+        # social_distancing, quarantine, quarantine_if_contact_positive, quarantine_if_household_quarantined
+        # stay_home_if_sick, practice_good_hygiene, wear_facial_coverings, risk_to_avoid_gathering_size, risk_to_avoid_location_types,
+        # stage
+        comp -= regulation.social_distancing() * 0.1
+        if regulation.stay_home_if_sick: comp -= 0.05
+        if regulation.practice_good_hygiene: comp -= 0.05
+        if regulation.wear_facial_coverings: comp -= 0.05
+        if regulation.wear_facial_coverings: comp -= 0.01
+        if regulation.quarantine_if_household_quarantined:  comp -= 0.07
+        if regulation.quarantine_if_contact_positive:  comp -= 0.04
+
+        self._regulation_compliance_prob = comp
+    
     def _contact_positive(self, contacts: Sequence[PersonID]) -> bool:
         for contact in contacts:
             if self._registry.get_person_test_result(contact) in {PandemicTestResult.POSITIVE,
