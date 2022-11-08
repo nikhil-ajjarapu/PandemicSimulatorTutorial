@@ -58,6 +58,7 @@ class BasePerson(Person):
         self._cemetery_ids = list(self._registry.location_ids_of_type(Cemetery))
         self._hospital_ids = list(self._registry.location_ids_of_type(Hospital))
         self._go_home = False
+        self.previous_stage = 0
 
     def enter_location(self, location_id: LocationID) -> bool:
         if location_id == self._home:
@@ -180,7 +181,6 @@ class BasePerson(Person):
                 1 - (1 - self._state.infection_spread_multiplier) * self._regulation_compliance_prob)
 
     def _modify_compliance(self, regulation: PandemicRegulation):
-        self.previous_stage = 0
         stage = regulation.stage
         comp = self._regulation_compliance_prob
         # social_distancing, quarantine, quarantine_if_contact_positive, quarantine_if_household_quarantined
