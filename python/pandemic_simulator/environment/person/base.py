@@ -135,7 +135,6 @@ class BasePerson(Person):
             if self._state.current_location in self._hospital_ids:
                 self.enter_location(self.home)
                 return None
-
         comply_to_regulation = self._numpy_rng.uniform() < self._regulation_compliance_prob
         if (
                 not self._registry.get_person_quarantined_state(self._id) and comply_to_regulation and
@@ -186,7 +185,7 @@ class BasePerson(Person):
         # social_distancing, quarantine, quarantine_if_contact_positive, quarantine_if_household_quarantined
         # stay_home_if_sick, practice_good_hygiene, wear_facial_coverings, risk_to_avoid_gathering_size, risk_to_avoid_location_types,
         # stage
-        comp -= regulation.social_distancing() * 0.1
+        comp -= regulation.social_distancing * 0.1
         if regulation.stay_home_if_sick: comp *= 0.98
         if regulation.practice_good_hygiene: comp *= 0.98
         if regulation.wear_facial_coverings: comp *= 0.99

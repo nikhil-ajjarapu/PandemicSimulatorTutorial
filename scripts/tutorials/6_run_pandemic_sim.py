@@ -22,7 +22,7 @@ def run_pandemic_sim() -> None:
     viz = ps.viz.SimViz.from_config(sim_config)
 
     # impose a regulation
-    sim.impose_regulation(regulation=ps.sh.austin_regulations[0])  # stage 0
+    sim.impose_regulation(regulation=ps.sh.austin_regulations[4])  # stage 0
 
     # run regulation steps in the simulator
     for _ in trange(100, desc='Simulating day'):
