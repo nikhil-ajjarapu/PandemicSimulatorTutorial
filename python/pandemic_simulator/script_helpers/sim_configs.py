@@ -115,6 +115,6 @@ town_with_religion_config = PandemicSimConfig(
         LocationConfig(HairSalon, num=40, num_assignees=3, state_opts=dict(visitor_capacity=5)),
         LocationConfig(Restaurant, num=20, num_assignees=6, state_opts=dict(visitor_capacity=30)),
         LocationConfig(Bar, num=20, num_assignees=5, state_opts=dict(visitor_capacity=30)),
-        LocationConfig(PlaceOfWorship, num=20, num_assignees=150, state_opts=dict(visitor_capacity=30)),
+        LocationConfig(PlaceOfWorship, num=20, num_assignees=7, state_opts=dict(visitor_capacity=80)),
     ],
     person_routine_assignment=DefaultPersonRoutineAssignment())
