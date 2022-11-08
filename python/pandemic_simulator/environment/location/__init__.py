@@ -9,4 +9,5 @@ from .office import *
 from .restaurant import *
 from .school import *
 from .store import *
+from .religious_place import *
 from .utils import *

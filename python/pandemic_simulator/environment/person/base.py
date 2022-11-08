@@ -2,7 +2,7 @@
 import dataclasses
 from copy import deepcopy
 from typing import Optional, List, Sequence, cast
-
+import random
 import numpy as np
 
 from ..interfaces import Person, PersonID, PersonState, LocationID, Risk, Registry, PandemicRegulation, \
@@ -28,12 +28,14 @@ class BasePerson(Person):
 
     _regulation_compliance_prob: float
     _go_home: bool
+    _religious: bool
 
     def __init__(self,
                  person_id: PersonID,
                  home: LocationID,
                  regulation_compliance_prob: float = 1.0,
-                 init_state: Optional[PersonState] = None):
+                 init_state: Optional[PersonState] = None,
+                 religious: bool=False):
         """
         :param person_id: PersonID instance
         :param home: Home location id
@@ -47,6 +49,8 @@ class BasePerson(Person):
         self._id = person_id
         self._home = home
         self._regulation_compliance_prob = regulation_compliance_prob
+        # TO DO: 40% of the people are religious (might wanna change)
+        self._religious = random.random() < 0.4
         self._init_state = init_state or PersonState(infection_state=None,
                                                      current_location=home,
                                                      risk=self._numpy_rng.choice([r for r in Risk]),
@@ -86,6 +90,10 @@ class BasePerson(Person):
     @property
     def assigned_locations(self) -> Sequence[LocationID]:
         return self._home,
+
+    @property
+    def is_religious(self) -> bool:
+        return self._religious
 
     def _sync(self, sim_time: SimTime) -> None:
         """Sync sim time specific variables."""

@@ -1,7 +1,7 @@
 # Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 
 from .person_routines import DefaultPersonRoutineAssignment
-from ..environment import Home, GroceryStore, Office, School, Hospital, RetailStore, HairSalon, Restaurant, Bar, \
+from ..environment import Home, GroceryStore, Office, School, ReligiousPlace, Hospital, RetailStore, HairSalon, Restaurant, Bar, \
     PandemicSimConfig, LocationConfig
 
 __all__ = ['town_config', 'small_town_config', 'test_config',
@@ -27,6 +27,7 @@ town_config = PandemicSimConfig(
         LocationConfig(HairSalon, num=40, num_assignees=3, state_opts=dict(visitor_capacity=5)),
         LocationConfig(Restaurant, num=20, num_assignees=6, state_opts=dict(visitor_capacity=30)),
         LocationConfig(Bar, num=20, num_assignees=5, state_opts=dict(visitor_capacity=30)),
+        LocationConfig(ReligiousPlace, num=55, num_assignees=5, state_opts=dict(visitor_capacity=100)),
     ],
     person_routine_assignment=DefaultPersonRoutineAssignment())
 
@@ -41,7 +42,8 @@ above_medium_town_config = PandemicSimConfig(
         LocationConfig(RetailStore, num=16, num_assignees=5, state_opts=dict(visitor_capacity=30)),
         LocationConfig(HairSalon, num=16, num_assignees=3, state_opts=dict(visitor_capacity=5)),
         LocationConfig(Restaurant, num=8, num_assignees=6, state_opts=dict(visitor_capacity=30)),
-        LocationConfig(Bar, num=8, num_assignees=4, state_opts=dict(visitor_capacity=30))
+        LocationConfig(Bar, num=8, num_assignees=4, state_opts=dict(visitor_capacity=30)),
+        LocationConfig(ReligiousPlace, num=55, num_assignees=5, state_opts=dict(visitor_capacity=100)),
     ],
     person_routine_assignment=DefaultPersonRoutineAssignment())
 
@@ -56,7 +58,8 @@ medium_town_config = PandemicSimConfig(
         LocationConfig(RetailStore, num=8, num_assignees=5, state_opts=dict(visitor_capacity=30)),
         LocationConfig(HairSalon, num=8, num_assignees=3, state_opts=dict(visitor_capacity=5)),
         LocationConfig(Restaurant, num=4, num_assignees=6, state_opts=dict(visitor_capacity=30)),
-        LocationConfig(Bar, num=4, num_assignees=3, state_opts=dict(visitor_capacity=30))
+        LocationConfig(Bar, num=4, num_assignees=3, state_opts=dict(visitor_capacity=30)),
+        LocationConfig(ReligiousPlace, num=55, num_assignees=5, state_opts=dict(visitor_capacity=100)),
     ],
     person_routine_assignment=DefaultPersonRoutineAssignment())
 
@@ -72,6 +75,7 @@ small_town_config = PandemicSimConfig(
         LocationConfig(HairSalon, num=4, num_assignees=3, state_opts=dict(visitor_capacity=5)),
         LocationConfig(Restaurant, num=2, num_assignees=6, state_opts=dict(visitor_capacity=30)),
         LocationConfig(Bar, num=2, num_assignees=5, state_opts=dict(visitor_capacity=30)),
+        LocationConfig(ReligiousPlace, num=55, num_assignees=5, state_opts=dict(visitor_capacity=100)),
     ],
     person_routine_assignment=DefaultPersonRoutineAssignment())
 
@@ -86,7 +90,8 @@ tiny_town_config = PandemicSimConfig(
         LocationConfig(RetailStore, num=2, num_assignees=5, state_opts=dict(visitor_capacity=30)),
         LocationConfig(HairSalon, num=2, num_assignees=3, state_opts=dict(visitor_capacity=5)),
         LocationConfig(Restaurant, num=1, num_assignees=6, state_opts=dict(visitor_capacity=30)),
-        LocationConfig(Bar, num=1, num_assignees=3, state_opts=dict(visitor_capacity=30))
+        LocationConfig(Bar, num=1, num_assignees=3, state_opts=dict(visitor_capacity=30)),
+        LocationConfig(ReligiousPlace, num=55, num_assignees=5, state_opts=dict(visitor_capacity=100)),
     ],
     person_routine_assignment=DefaultPersonRoutineAssignment())
 
@@ -100,5 +105,6 @@ test_config = PandemicSimConfig(
         LocationConfig(Hospital, num=1, num_assignees=30, state_opts=dict(patient_capacity=2)),
         LocationConfig(Restaurant, num=1, num_assignees=3, state_opts=dict(visitor_capacity=10)),
         LocationConfig(Bar, num=1, num_assignees=3, state_opts=dict(visitor_capacity=10)),
+        LocationConfig(ReligiousPlace, num=1, num_assignees=1, state_opts=dict(visitor_capacity=40)),
     ],
     person_routine_assignment=DefaultPersonRoutineAssignment())

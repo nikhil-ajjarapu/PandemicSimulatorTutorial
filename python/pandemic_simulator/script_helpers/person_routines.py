@@ -5,7 +5,7 @@
 from typing import Sequence, Type
 
 from ..environment import LocationID, PersonRoutine, HairSalon, Restaurant, Bar, \
-    GroceryStore, RetailStore, triggered_routine, weekend_routine, social_routine, mid_day_during_week_routine, \
+    GroceryStore, RetailStore, ReligiousPlace, triggered_routine, weekend_routine, social_routine, mid_day_during_week_routine, \
     PersonRoutineAssignment, Person, Retired, Minor, Worker, Location
 
 __all__ = ['DefaultPersonRoutineAssignment']
