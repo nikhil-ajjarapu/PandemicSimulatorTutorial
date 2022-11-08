@@ -187,12 +187,12 @@ class BasePerson(Person):
         # stay_home_if_sick, practice_good_hygiene, wear_facial_coverings, risk_to_avoid_gathering_size, risk_to_avoid_location_types,
         # stage
         comp -= regulation.social_distancing() * 0.1
-        if regulation.stay_home_if_sick: comp -= 0.05
-        if regulation.practice_good_hygiene: comp -= 0.05
-        if regulation.wear_facial_coverings: comp -= 0.05
-        if regulation.wear_facial_coverings: comp -= 0.01
-        if regulation.quarantine_if_household_quarantined:  comp -= 0.07
-        if regulation.quarantine_if_contact_positive:  comp -= 0.04
+        if regulation.stay_home_if_sick: comp *= 0.98
+        if regulation.practice_good_hygiene: comp *= 0.98
+        if regulation.wear_facial_coverings: comp *= 0.99
+        if regulation.quarantine: comp *= 0.99
+        if regulation.quarantine_if_household_quarantined:  comp *= 0.97
+        if regulation.quarantine_if_contact_positive:  comp *= 0.95
 
         self._regulation_compliance_prob = comp
     
