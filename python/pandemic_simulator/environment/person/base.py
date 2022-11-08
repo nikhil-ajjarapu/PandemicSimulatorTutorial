@@ -180,6 +180,7 @@ class BasePerson(Person):
                 1 - (1 - self._state.infection_spread_multiplier) * self._regulation_compliance_prob)
 
     def _modify_compliance(self, regulation: PandemicRegulation):
+        self.previous_stage = 0
         stage = regulation.stage
         comp = self._regulation_compliance_prob
         # social_distancing, quarantine, quarantine_if_contact_positive, quarantine_if_household_quarantined
@@ -193,8 +194,15 @@ class BasePerson(Person):
         if regulation.quarantine_if_household_quarantined:  comp *= 0.97
         if regulation.quarantine_if_contact_positive:  comp *= 0.95
 
-        self._regulation_compliance_prob = 0.01
-    
+        if stage > self.previous_stage:
+            comp *= 0.98
+        elif stage < self.previous_stage:
+            comp *= 1.02
+
+        self._regulation_compliance_prob = comp
+
+        self.previous_stage = stage
+
     def _contact_positive(self, contacts: Sequence[PersonID]) -> bool:
         for contact in contacts:
             if self._registry.get_person_test_result(contact) in {PandemicTestResult.POSITIVE,
