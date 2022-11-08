@@ -193,7 +193,7 @@ class BasePerson(Person):
         if regulation.quarantine_if_household_quarantined:  comp *= 0.97
         if regulation.quarantine_if_contact_positive:  comp *= 0.95
 
-        self._regulation_compliance_prob = comp
+        self._regulation_compliance_prob = 0.01
     
     def _contact_positive(self, contacts: Sequence[PersonID]) -> bool:
         for contact in contacts:
