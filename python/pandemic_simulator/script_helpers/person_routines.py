@@ -34,7 +34,7 @@ class DefaultPersonRoutineAssignment(PersonRoutineAssignment):
         if age >= 12:
             routines.append(social_routine(home_id))
         if is_religious:
-            routines.append(weekend_routine(None, PlaceOfWorship, explore_probability=0.5))
+            routines.append(weekend_routine(None, PlaceOfWorship, explore_probability=1.0))
         return routines
 
     @staticmethod
@@ -49,7 +49,7 @@ class DefaultPersonRoutineAssignment(PersonRoutineAssignment):
         ]
 
         if is_religious:
-            routines.append(weekend_routine(None, PlaceOfWorship, explore_probability=0.5))
+            routines.append(weekend_routine(None, PlaceOfWorship, explore_probability=1.0))
 
         return routines
 
@@ -72,7 +72,7 @@ class DefaultPersonRoutineAssignment(PersonRoutineAssignment):
             social_routine(home_id)
         ]
         if is_religious:
-            routines.append(weekend_routine(None, PlaceOfWorship, explore_probability=0.5))
+            routines.append(weekend_routine(None, PlaceOfWorship, explore_probability=1.0))
             
         return routines
 
