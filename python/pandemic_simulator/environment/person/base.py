@@ -166,7 +166,7 @@ class BasePerson(Person):
         return NOOP
 
     def receive_regulation(self, regulation: PandemicRegulation) -> None:
-        self._modify_compliance(regulation)
+        # self._modify_compliance(regulation)
         self._state.quarantine = regulation.quarantine
         self._state.quarantine_if_contact_positive = regulation.quarantine_if_contact_positive
         self._state.quarantine_if_household_quarantined = regulation.quarantine_if_household_quarantined
@@ -187,21 +187,27 @@ class BasePerson(Person):
         # stay_home_if_sick, practice_good_hygiene, wear_facial_coverings, risk_to_avoid_gathering_size, risk_to_avoid_location_types,
         # stage
         comp -= regulation.social_distancing * 0.1
-        if regulation.stay_home_if_sick: comp *= 0.98
-        if regulation.practice_good_hygiene: comp *= 0.98
-        if regulation.wear_facial_coverings: comp *= 0.99
-        if regulation.quarantine: comp *= 0.99
-        if regulation.quarantine_if_household_quarantined:  comp *= 0.97
-        if regulation.quarantine_if_contact_positive:  comp *= 0.95
+        if regulation.stay_home_if_sick: 
+            comp *= 0.98
+        if regulation.practice_good_hygiene: 
+            comp *= 0.98
+        if regulation.wear_facial_coverings: 
+            comp *= 0.99
+        if regulation.quarantine: 
+            comp *= 0.99
+        if regulation.quarantine_if_household_quarantined:  
+            comp *= 0.97
+        if regulation.quarantine_if_contact_positive:  
+            comp *= 0.95
 
         if stage > self.previous_stage:
             comp *= 0.98
         elif stage < self.previous_stage:
             comp *= 1.02
 
+        self.previous_stage = stage
         self._regulation_compliance_prob = comp
 
-        self.previous_stage = stage
 
     def _contact_positive(self, contacts: Sequence[PersonID]) -> bool:
         for contact in contacts:
