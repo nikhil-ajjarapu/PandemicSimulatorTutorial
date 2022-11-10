@@ -1,12 +1,12 @@
 # Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 
 from .person_routines import DefaultPersonRoutineAssignment
-from ..environment import Home, GroceryStore, Office, School, Hospital, RetailStore, HairSalon, Restaurant, Bar, \
+from ..environment import Home, GroceryStore, Office, School, Hospital, RetailStore, HairSalon, Restaurant, Bar, PlaceOfWorship, \
     PandemicSimConfig, LocationConfig
 
 __all__ = ['town_config', 'small_town_config', 'test_config',
            'tiny_town_config', 'medium_town_config',
-           'above_medium_town_config']
+           'above_medium_town_config', 'town_with_religion_config']
 
 """
 A few references for the numbers selected:
@@ -100,5 +100,21 @@ test_config = PandemicSimConfig(
         LocationConfig(Hospital, num=1, num_assignees=30, state_opts=dict(patient_capacity=2)),
         LocationConfig(Restaurant, num=1, num_assignees=3, state_opts=dict(visitor_capacity=10)),
         LocationConfig(Bar, num=1, num_assignees=3, state_opts=dict(visitor_capacity=10)),
+    ],
+    person_routine_assignment=DefaultPersonRoutineAssignment())
+
+town_with_religion_config = PandemicSimConfig(
+    num_persons=10000,
+    location_configs=[
+        LocationConfig(Home, num=3000),
+        LocationConfig(GroceryStore, num=40, num_assignees=5, state_opts=dict(visitor_capacity=30)),
+        LocationConfig(Office, num=50, num_assignees=150, state_opts=dict(visitor_capacity=0)),
+        LocationConfig(School, num=100, num_assignees=4, state_opts=dict(visitor_capacity=30)),
+        LocationConfig(Hospital, num=10, num_assignees=30, state_opts=dict(patient_capacity=10)),
+        LocationConfig(RetailStore, num=40, num_assignees=5, state_opts=dict(visitor_capacity=30)),
+        LocationConfig(HairSalon, num=40, num_assignees=3, state_opts=dict(visitor_capacity=5)),
+        LocationConfig(Restaurant, num=20, num_assignees=6, state_opts=dict(visitor_capacity=30)),
+        LocationConfig(Bar, num=20, num_assignees=5, state_opts=dict(visitor_capacity=30)),
+        LocationConfig(PlaceOfWorship, num=11, num_assignees=3, state_opts=dict(visitor_capacity=250)),
     ],
     person_routine_assignment=DefaultPersonRoutineAssignment())

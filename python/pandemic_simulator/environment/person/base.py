@@ -27,6 +27,7 @@ class BasePerson(Person):
     _hospital_ids: List[LocationID]
 
     _regulation_compliance_prob: float
+    _religious: bool
     _go_home: bool
 
     def __init__(self,
@@ -83,6 +84,16 @@ class BasePerson(Person):
     def at_home(self) -> bool:
         """Return True if the person is at home and False otherwise"""
         return self._state.current_location == self.home
+    
+    @property
+    def is_religious(self) -> bool:
+        """Return True if the person attends religious services"""
+        return self._religious
+
+    @property
+    def is_religious(self) -> bool:
+        """Return True if the person attends religious services"""
+        return self._religious
 
     @property
     def assigned_locations(self) -> Sequence[LocationID]:
